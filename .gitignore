@@ -1,0 +1,10 @@
+# Publish only this website. Job documents and other local work stay local.
+/*
+!/.gitignore
+!/.nojekyll
+!/index.html
+!/portfolio.css
+!/portfolio.js
+!/projects.js
+!/favicon.svg
+!/PORTFOLIO.md
