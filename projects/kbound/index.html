@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>K-Bound | Pratik Niroula</title>
+  <meta name="description" content="Can we tell whether an AI update will help when we don’t have the answers? Sometimes the honest answer is no." />
+  <meta property="og:title" content="K-Bound | Pratik Niroula" />
+  <meta property="og:description" content="Knowing when not to update an AI model." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://pratikn03.github.io/Website/projects/kbound/" />
+  <link rel="canonical" href="https://pratikn03.github.io/Website/projects/kbound/" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../portfolio.css" />
+  <link rel="stylesheet" href="../../case-study.css" />
+  <script src="../../case-study.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"K-Bound: Knowing when not to update an AI model.","description":"Can we tell whether an AI update will help when we don’t have the answers? Sometimes the honest answer is no.","author":{"@type":"Person","name":"Pratik Niroula","url":"https://pratikn03.github.io/Website/"},"mainEntityOfPage":"https://pratikn03.github.io/Website/projects/kbound/","inLanguage":"en","about":["PyTorch","Test-time adaptation","Lean 4"]}</script>
+</head>
+<body class="case-study">
+  <a class="skip-link" href="#main">Skip to project story</a>
+  <div class="page-progress" aria-hidden="true"></div>
+  <header class="site-header wrap">
+    <a class="wordmark" href="../../" aria-label="Pratik Niroula, home">pn<span class="brand-dot">.</span><span class="wordmark-caption">RESEARCH &amp; THINGS I BUILD</span></a>
+    <nav class="primary-nav" aria-label="Main navigation"><a href="../../#work" aria-current="page">Work</a><a href="../../#papers">Papers</a><a href="../../#vision">Vision</a></nav>
+    <button class="motion-toggle mono" id="motion-toggle" type="button" aria-pressed="true"><span class="motion-indicator" aria-hidden="true"></span><span id="motion-label">Motion on</span></button>
+  </header>
+  <main id="main">
+    <article aria-labelledby="story-title">
+      <div class="wrap">
+        <div class="story-breadcrumb"><a href="../../#work"><span aria-hidden="true">&larr;</span> Back to all projects</a><span class="mono">PROJECT 01 / 08</span></div>
+        <header class="story-hero">
+          <div class="story-hero-copy">
+            <p class="eyebrow">MACHINE LEARNING RESEARCH</p>
+            <h1 id="story-title">K-Bound</h1>
+            <p class="story-subtitle">Knowing when not to update an AI model.</p>
+            <p class="story-deck">Can we tell whether an AI update will help when we don’t have the answers? Sometimes the honest answer is no.</p>
+            <div class="story-actions"><a class="button button-dark" href="#question">Read the story <span aria-hidden="true">&darr;</span></a><a class="text-link" href="https://github.com/Pratikn03/K-Bound" target="_blank" rel="noopener noreferrer">Explore the code <span aria-hidden="true">&nearr;</span></a></div>
+          </div>
+          <figure class="story-map" aria-labelledby="map-title">
+            <p class="mono"><span>THE IDEA, AT A GLANCE</span><span>01</span></p>
+            <h2 class="story-map-title" id="map-title">An update is not always an improvement.</h2>
+            <ol><li><span class="story-step-number" aria-hidden="true">01</span><div><strong>A model meets unfamiliar data</strong><p>The correct answers are not available at decision time.</p></div></li>
+<li><span class="story-step-number" aria-hidden="true">02</span><div><strong>Ask what the evidence supports</strong><p>Separate a theoretical limit from an empirical estimate.</p></div></li>
+<li><span class="story-step-number" aria-hidden="true">03</span><div><strong>Adapt, freeze, or abstain</strong><p>Do not turn missing evidence into permission to change.</p></div></li></ol>
+            <figcaption>A conceptual overview, not a chart of experimental results.</figcaption>
+          </figure>
+        </header>
+        <dl class="story-facts">
+          <div><dt>Project status</dt><dd>Research manuscript + implementation</dd></div>
+          <div><dt>Reading time</dt><dd>About 4 minutes &middot; By Pratik Niroula</dd></div>
+          <div><dt>Tools & themes</dt><dd><div class="project-tags"><span>PyTorch</span><span>Test-time adaptation</span><span>Lean 4</span></div></dd></div>
+        </dl>
+        <div class="story-layout">
+          <aside class="story-aside">
+            <p class="mono">IN THIS PROJECT</p>
+            <nav class="story-toc" aria-label="On this page"><a href="#question"><span aria-hidden="true">01</span>The question</a>
+<a href="#approach"><span aria-hidden="true">02</span>How it works</a>
+<a href="#inside"><span aria-hidden="true">03</span>Inside the project</a>
+<a href="#evidence"><span aria-hidden="true">04</span>Status &amp; limits</a>
+<a href="#takeaway"><span aria-hidden="true">05</span>The bigger idea</a>
+<a href="#resources"><span aria-hidden="true">06</span>Read the sources</a></nav>
+            <p class="story-aside-note">A closer look at the question, the work, and what it does and does not show.<br><br><a href="mailto:pratik.niroula@mnsu.edu?subject=K-Bound%20project%20question">Have a question?</a></p>
+          </aside>
+          <div class="story-body">
+            <section class="story-section" id="question">
+              <p class="eyebrow">01 / THE QUESTION</p><h2>Can the model know that a change will help?</h2>
+              <div class="story-prose"><p>A model can work well on the data it was trained on and struggle when the world changes. Test-time adaptation tries to respond by updating the model using the new inputs. The difficult part is that those inputs often arrive without correct labels. We can see that something changed, but not necessarily whether an update makes the predictions better.</p>
+<p>K-Bound starts with that gap. Two possible situations can look identical through the available observations while making the same update helpful in one case and harmful in the other. If the evidence cannot distinguish those situations, confidence alone does not solve the problem.</p>
+<p>The project asks a narrower, more useful question than whether adaptation is always good: under an explicitly stated set of assumptions, when is there enough information to commit to a decision? When there is not, keeping the original predictor or declining to make a recommendation is part of the design, not a failure to produce an answer.</p></div>
+              <aside class="story-callout"><span class="mono">IN PLAIN LANGUAGE</span><p>An impossibility result is not saying that learning is hopeless. It is saying which extra information a decision would need.</p></aside>
+            </section>
+            <section class="story-section" id="approach">
+              <p class="eyebrow">02 / HOW IT WORKS</p><h2>Two ideas, with two different sets of assumptions.</h2>
+              <div class="story-prose"><p>The theoretical result and the practical KGA decision layer answer related questions, but they are not interchangeable. The theory describes a decision frontier over a declared uncertainty class. KGA estimates whether a particular candidate update will help, using calibration evidence from earlier labeled cases.</p></div>
+              <ol class="story-flow"><li><div><h3>State the theoretical uncertainty class</h3><p>The frontier is written as |M| &gt; beta in the manuscript. Its meaning depends on a specified disagreement-conditional calibration-residual class. It is not an unrestricted promise about every kind of distribution shift.</p></div></li>
+<li><div><h3>Keep the unresolved region explicit</h3><p>Within the stated model, the unresolved region supports abstention rather than an unjustified choice. This is the theoretical part of the story; it does not automatically supply the empirical calibration evidence used by KGA.</p></div></li>
+<li><div><h3>Estimate a candidate update&#39;s benefit</h3><p>KGA uses a frozen estimator and label-free features to predict an evaluation-cell benefit. Residual calibration supplies an interval around that estimate. Candidates such as Tent, EATA, and SAR need their own locks and calibration.</p></div></li>
+<li><div><h3>Require a positive lower bound before adapting</h3><p>The practical rule permits adaptation when the calibrated lower benefit bound is above zero. Its interpretation is only as strong as the interval coverage for the quantity being estimated.</p></div></li>
+<li><div><h3>Refuse unsupported decisions</h3><p>The service has an abstention path that retains the frozen predictor when evidence is unavailable. Invalid inputs can be rejected before a decision is made. A diagnostic score by itself is not a certificate.</p></div></li></ol>
+            </section>
+            <section class="story-section" id="inside">
+              <p class="eyebrow">03 / INSIDE THE PROJECT</p><h2>From a research question to inspectable artifacts.</h2>
+              <div class="story-prose"><p>The repository contains more than a paper. It separates the maintained decision package, formal material, experimental runners, and locked research evidence so that each can be examined on its own terms.</p></div>
+              <div class="story-components"><section class="story-component"><span class="mono">01 / PROJECT COMPONENT</span><h3>Decision layer</h3><p>The maintained Python package exposes the practical KGA interface and command-line tools. Older research-package paths are not automatically equivalent deployment surfaces.</p><code>kga/</code></section>
+<section class="story-component"><span class="mono">02 / PROJECT COMPONENT</span><h3>Formal scope</h3><p>Lean material covers a scoped finite core and measurable layers. The formal audit documents boundaries rather than treating the entire project as a universally machine-checked guarantee.</p><code>docs/research/kbound/formal/</code></section>
+<section class="story-component"><span class="mono">03 / PROJECT COMPONENT</span><h3>Experiments and locks</h3><p>Adaptation runners and research locks keep candidate choices, calibration, and evaluation protocols visible. Changing a candidate or protocol can change which evidence remains applicable.</p><code>experiments/kbound/ + research_lock/</code></section>
+<section class="story-component"><span class="mono">04 / PROJECT COMPONENT</span><h3>Research writing</h3><p>The main paper and full report explain the assumptions, theoretical frontier, empirical construction, and limitations at different levels of detail.</p><code>docs/research/kbound/release/current/</code></section></div>
+            </section>
+            <section class="story-section" id="evidence">
+              <p class="eyebrow">04 / STATUS &amp; LIMITS</p><h2>The limits belong next to the results.</h2>
+              <div class="story-prose"><p>The repository distinguishes controlled benchmark findings from natural-shift evidence. Some controlled comparisons have favorable point estimates, but the README does not present them as a confirmatory, universal adaptation win. The natural-data studies also include ties, one-sided decisions, negative development evidence, and withheld results.</p>
+<p>That distinction matters. Avoiding a harmful update can be useful even when it does not outperform always keeping the original model. Likewise, an interval for an evaluation-cell outcome does not automatically establish a population guarantee or protect an indefinitely repeated deployment.</p></div>
+              <aside class="story-status"><span class="mono">WHAT TO KEEP IN MIND</span><h3>A bounded research claim, not an always-better adapter.</h3><ul><li>The theoretical frontier is conditional on the manuscript&#39;s declared class and assumptions.</li><li>KGA&#39;s empirical decision requires appropriate calibration coverage for the actual target quantity.</li><li>The current README does not claim a valid natural-dataset, confidence-supported win over both always-adapt and always-freeze.</li><li>A manuscript, formal artifact, or diagnostic API endpoint should not be presented as a blanket deployment safety certificate.</li></ul></aside>
+            </section>
+            <section class="story-section" id="takeaway">
+              <p class="eyebrow">05 / THE BIGGER IDEA</p><h2>Make room for an honest answer.</h2>
+              <div class="story-prose"><p>What I care about here is the connection between a mathematical limit and a software decision. If an assumption is necessary in the theorem, the interface should not quietly forget it. If calibration evidence is missing, the system should not behave as though the evidence exists.</p>
+<p>K-Bound represents the research side of my work: defining a question carefully, building a practical method alongside it, and keeping the boundary between the two visible. The useful outcome is not just another update rule. It is a clearer account of when an update is justified.</p></div>
+              <div class="story-takeaway"><p>Sometimes the most useful thing an AI system can say is: I do not have enough evidence to change.</p></div>
+            </section>
+            <section class="story-section" id="resources">
+              <p class="eyebrow">06 / KEEP EXPLORING</p><h2>Read the work behind the story.</h2>
+              <div class="story-prose"><p>This is the readable overview. The repository and research documents contain the details, assumptions, and setup instructions behind it.</p></div>
+              <div class="story-resources"><a class="story-resource" href="https://github.com/Pratikn03/K-Bound/blob/main/docs/research/kbound/release/current/kbound_short_main.pdf" target="_blank" rel="noopener noreferrer"><div><strong>Read main paper</strong><p>The paper or report behind the project. Check the manuscript for the full methods, evidence, and limitations.</p></div><span class="resource-arrow" aria-hidden="true">&nearr;</span></a>
+<a class="story-resource" href="https://github.com/Pratikn03/K-Bound" target="_blank" rel="noopener noreferrer"><div><strong>Project overview and evidence scope</strong><p>Start with the README for the current separation of theory, empirical results, and claim boundaries.</p></div><span class="resource-arrow" aria-hidden="true">&nearr;</span></a>
+<a class="story-resource" href="https://github.com/Pratikn03/K-Bound/blob/main/docs/research/kbound/formal/README.md" target="_blank" rel="noopener noreferrer"><div><strong>Formal development</strong><p>Read what the Lean development covers and how its scope is described.</p></div><span class="resource-arrow" aria-hidden="true">&nearr;</span></a>
+<a class="story-resource" href="https://github.com/Pratikn03/K-Bound/blob/main/docs/research/kbound/release/current/kbound_full_report.pdf" target="_blank" rel="noopener noreferrer"><div><strong>Full research report</strong><p>The longer companion to the main manuscript, including supporting material.</p></div><span class="resource-arrow" aria-hidden="true">&nearr;</span></a></div>
+              <p class="story-source-note">Written from the linked public project documentation for this portfolio in September 2026. Repository documentation may change; follow the sources for the current implementation and evidence. This overview is not an independent reproduction of the experiments.</p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </article>
+    <section class="story-next" aria-labelledby="next-title"><div class="wrap">
+      <div class="story-next-top"><p class="eyebrow">ANOTHER QUESTION. ANOTHER PROJECT.</p><a href="../../#work">All projects</a></div>
+      <a class="story-next-link" href="../orius/"><div><h2 id="next-title">ORIUS / GridPulse</h2><p>What if the controller&#39;s picture of the world is wrong?</p></div><span class="story-next-arrow" aria-hidden="true">&nearr;</span></a>
+      <div class="story-contact"><p>Something here caught your interest?<br>I would like to hear what you are working on.</p><a href="mailto:pratik.niroula@mnsu.edu">pratik.niroula@mnsu.edu &nearr;</a></div>
+    </div></section>
+  </main>
+  <footer class="site-footer wrap mono"><span>&copy; <span id="year">2026</span> PRATIK NIROULA</span><span>THANKS FOR READING.</span><a href="https://github.com/Pratikn03/Website" target="_blank" rel="noopener noreferrer">SITE SOURCE &nearr;</a></footer>
+</body>
+</html>

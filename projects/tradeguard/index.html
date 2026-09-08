@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>TradeGuard | Pratik Niroula</title>
+  <meta name="description" content="A paper-trading dashboard with clear controls, a separate worker, and a way to stop it." />
+  <meta property="og:title" content="TradeGuard | Pratik Niroula" />
+  <meta property="og:description" content="A control panel that takes the stop button seriously." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://pratikn03.github.io/Website/projects/tradeguard/" />
+  <link rel="canonical" href="https://pratikn03.github.io/Website/projects/tradeguard/" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../portfolio.css" />
+  <link rel="stylesheet" href="../../case-study.css" />
+  <script src="../../case-study.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"TradeGuard: A control panel that takes the stop button seriously.","description":"A paper-trading dashboard with clear controls, a separate worker, and a way to stop it.","author":{"@type":"Person","name":"Pratik Niroula","url":"https://pratikn03.github.io/Website/"},"mainEntityOfPage":"https://pratikn03.github.io/Website/projects/tradeguard/","inLanguage":"en","about":["React / TypeScript","PostgreSQL","FastAPI"]}</script>
+</head>
+<body class="case-study">
+  <a class="skip-link" href="#main">Skip to project story</a>
+  <div class="page-progress" aria-hidden="true"></div>
+  <header class="site-header wrap">
+    <a class="wordmark" href="../../" aria-label="Pratik Niroula, home">pn<span class="brand-dot">.</span><span class="wordmark-caption">RESEARCH &amp; THINGS I BUILD</span></a>
+    <nav class="primary-nav" aria-label="Main navigation"><a href="../../#work" aria-current="page">Work</a><a href="../../#papers">Papers</a><a href="../../#vision">Vision</a></nav>
+    <button class="motion-toggle mono" id="motion-toggle" type="button" aria-pressed="true"><span class="motion-indicator" aria-hidden="true"></span><span id="motion-label">Motion on</span></button>
+  </header>
+  <main id="main">
+    <article aria-labelledby="story-title">
+      <div class="wrap">
+        <div class="story-breadcrumb"><a href="../../#work"><span aria-hidden="true">&larr;</span> Back to all projects</a><span class="mono">PROJECT 08 / 08</span></div>
+        <header class="story-hero">
+          <div class="story-hero-copy">
+            <p class="eyebrow">FULL-STACK SOFTWARE ENGINEERING</p>
+            <h1 id="story-title">TradeGuard</h1>
+            <p class="story-subtitle">A control panel that takes the stop button seriously.</p>
+            <p class="story-deck">A paper-trading dashboard with clear controls, a separate worker, and a way to stop it.</p>
+            <div class="story-actions"><a class="button button-dark" href="#question">Read the story <span aria-hidden="true">&darr;</span></a><a class="text-link" href="https://github.com/Pratikn03/Trading" target="_blank" rel="noopener noreferrer">Explore the code <span aria-hidden="true">&nearr;</span></a></div>
+          </div>
+          <figure class="story-map" aria-labelledby="map-title">
+            <p class="mono"><span>THE IDEA, AT A GLANCE</span><span>08</span></p>
+            <h2 class="story-map-title" id="map-title">The screen is not the execution engine.</h2>
+            <ol><li><span class="story-step-number" aria-hidden="true">01</span><div><strong>An operator issues a command</strong><p>A private dashboard provides authenticated controls.</p></div></li>
+<li><span class="story-step-number" aria-hidden="true">02</span><div><strong>The worker owns execution</strong><p>Reconciliation and verifier checks sit outside the browser.</p></div></li>
+<li><span class="story-step-number" aria-hidden="true">03</span><div><strong>Persist the state and the stop condition</strong><p>Commands, decisions, and audit events have a durable record.</p></div></li></ol>
+            <figcaption>A conceptual overview, not a chart of experimental results.</figcaption>
+          </figure>
+        </header>
+        <dl class="story-facts">
+          <div><dt>Project status</dt><dd>Personal, paper-first trading application</dd></div>
+          <div><dt>Reading time</dt><dd>About 3 minutes &middot; By Pratik Niroula</dd></div>
+          <div><dt>Tools & themes</dt><dd><div class="project-tags"><span>React / TypeScript</span><span>PostgreSQL</span><span>FastAPI</span></div></dd></div>
+        </dl>
+        <div class="story-layout">
+          <aside class="story-aside">
+            <p class="mono">IN THIS PROJECT</p>
+            <nav class="story-toc" aria-label="On this page"><a href="#question"><span aria-hidden="true">01</span>The question</a>
+<a href="#approach"><span aria-hidden="true">02</span>How it works</a>
+<a href="#inside"><span aria-hidden="true">03</span>Inside the project</a>
+<a href="#evidence"><span aria-hidden="true">04</span>Status &amp; limits</a>
+<a href="#takeaway"><span aria-hidden="true">05</span>The bigger idea</a>
+<a href="#resources"><span aria-hidden="true">06</span>Read the sources</a></nav>
+            <p class="story-aside-note">A closer look at the question, the work, and what it does and does not show.<br><br><a href="mailto:pratik.niroula@mnsu.edu?subject=TradeGuard%20project%20question">Have a question?</a></p>
+          </aside>
+          <div class="story-body">
+            <section class="story-section" id="question">
+              <p class="eyebrow">01 / THE QUESTION</p><h2>What happens after the operator clicks a button?</h2>
+              <div class="story-prose"><p>An automated trading dashboard can look simple: a few charts, a start button, and a stop button. The difficult engineering is behind that surface. The browser can disconnect, a process can restart, and the broker&#39;s state can differ from the application&#39;s last view of it.</p>
+<p>TradeGuard is a personal, paper-first control application built around those concerns. It separates the dashboard and API from an independent trading worker, stores operational state in PostgreSQL, and includes a durable kill-switch design.</p>
+<p>This is a software architecture project, not a claim of profitable trading. The focus is on controlling an automated process, recording its decisions, and keeping operator intent from being reduced to a temporary state in a browser tab.</p></div>
+              <aside class="story-callout"><span class="mono">IN PLAIN LANGUAGE</span><p>A stop button should represent a system state, not just a change in how the dashboard looks.</p></aside>
+            </section>
+            <section class="story-section" id="approach">
+              <p class="eyebrow">02 / HOW IT WORKS</p><h2>Separate control, execution, and persistence.</h2>
+              <div class="story-prose"><p>The README describes a private, single-operator system. A FastAPI service handles access and control commands, while a separate worker owns broker reconciliation, strategy evaluation, verifier checks, and order submission. This page describes that architecture without connecting to a broker or executing trades.</p></div>
+              <ol class="story-flow"><li><div><h3>Authenticate the operator</h3><p>The private application includes TOTP-protected operator access. HTTPS and a trusted operator account are part of the documented operating model, not optional assumptions for a public multi-user service.</p></div></li>
+<li><div><h3>Record a control command</h3><p>The API provides dashboard data and control surfaces, backed by persistent state and audit records. The interface is not meant to own the execution loop itself.</p></div></li>
+<li><div><h3>Let the worker reconcile and evaluate</h3><p>The independent worker checks broker state, evaluates strategy logic, applies verifier checks, and owns submission. Separating it from the web process makes the responsibility explicit.</p></div></li>
+<li><div><h3>Respect durable stop and risk state</h3><p>The architecture includes a durable kill switch and portfolio-percentage risk controls. Their implementation belongs in the operational path, not only in frontend validation.</p></div></li>
+<li><div><h3>Make the process inspectable</h3><p>Persisted commands, snapshots, decisions, orders, and audit events support inspection. A React dashboard and Telegram alerts provide visibility into the system&#39;s operation.</p></div></li></ol>
+            </section>
+            <section class="story-section" id="inside">
+              <p class="eyebrow">03 / INSIDE THE PROJECT</p><h2>A small application with serious state boundaries.</h2>
+              <div class="story-prose"><p>The components are intentionally distinct. Each one has a different job, and the source repository&#39;s production runbook describes the environment and paper-first operating gates around them.</p></div>
+              <div class="story-components"><section class="story-component"><span class="mono">01 / PROJECT COMPONENT</span><h3>Operator API</h3><p>FastAPI handles authentication, dashboard APIs, audit logging, and control commands for the private application.</p><code>web-api / FastAPI</code></section>
+<section class="story-component"><span class="mono">02 / PROJECT COMPONENT</span><h3>Independent worker</h3><p>The worker owns reconciliation, strategy evaluation, verifier checks, order submission, and durable kill-switch behavior.</p><code>trading-worker</code></section>
+<section class="story-component"><span class="mono">03 / PROJECT COMPONENT</span><h3>Persistent records</h3><p>PostgreSQL stores users, sessions, bot state, commands, risk profiles, audit events, snapshots, decisions, and orders.</p><code>PostgreSQL</code></section>
+<section class="story-component"><span class="mono">04 / PROJECT COMPONENT</span><h3>Dashboard and delivery</h3><p>A Vite, React, and TypeScript interface provides the operator view. Caddy handles the documented HTTPS and static-serving role.</p><code>frontend/ + Caddy + Docker Compose</code></section></div>
+            </section>
+            <section class="story-section" id="evidence">
+              <p class="eyebrow">04 / STATUS &amp; LIMITS</p><h2>Paper-first is part of the scope.</h2>
+              <div class="story-prose"><p>The repository instructs operators to keep Alpaca in paper mode and live trading disabled until its paper-first gate is satisfied. This portfolio presents the project in that paper-first scope and does not claim that the gate has passed or that a live deployment is operating.</p>
+<p>A well-structured control system cannot guarantee returns or remove market and operational risk. Authentication, reconciliation, persistence, and a kill switch are engineering controls. Their presence should not be confused with a performance claim about the underlying strategy.</p></div>
+              <aside class="story-status"><span class="mono">WHAT TO KEEP IN MIND</span><h3>Private engineering project, not a public trading service.</h3><ul><li>No investment return, strategy performance, or profitability claim is made here.</li><li>The documented model is one trusted operator, not public SaaS or a multi-tenant trading product.</li><li>Paper mode and disabled live trading remain the stated starting configuration.</li><li>Source documentation and a runbook describe the system; they are not evidence that its controls have been independently validated on this portfolio.</li></ul></aside>
+            </section>
+            <section class="story-section" id="takeaway">
+              <p class="eyebrow">05 / THE BIGGER IDEA</p><h2>Reliability is what happens outside the happy path.</h2>
+              <div class="story-prose"><p>TradeGuard represents a different side of my work: taking an application that changes state and making its responsibilities explicit. The browser shows the system, the API accepts commands, the worker acts, and the database preserves what happened.</p>
+<p>The broader lesson is useful beyond trading. Whenever software controls an automated process, stopping, restarting, reconciling, and auditing it deserve as much attention as the main feature. A polished interface should make those controls understandable without pretending the underlying complexity has disappeared.</p></div>
+              <div class="story-takeaway"><p>The interesting engineering is not only how a system starts working. It is how it stays understandable when something goes wrong.</p></div>
+            </section>
+            <section class="story-section" id="resources">
+              <p class="eyebrow">06 / KEEP EXPLORING</p><h2>Read the work behind the story.</h2>
+              <div class="story-prose"><p>This is the readable overview. The repository and research documents contain the details, assumptions, and setup instructions behind it.</p></div>
+              <div class="story-resources"><a class="story-resource" href="https://github.com/Pratikn03/Trading" target="_blank" rel="noopener noreferrer"><div><strong>TradeGuard repository</strong><p>Architecture, private operating scope, paper-first defaults, and development entrypoints.</p></div><span class="resource-arrow" aria-hidden="true">&nearr;</span></a>
+<a class="story-resource" href="https://github.com/Pratikn03/Trading/blob/main/docs/production-runbook.md" target="_blank" rel="noopener noreferrer"><div><strong>Production runbook</strong><p>The project&#39;s operating instructions and gates. This portfolio does not execute any of them.</p></div><span class="resource-arrow" aria-hidden="true">&nearr;</span></a></div>
+              <p class="story-source-note">Written from the linked public project documentation for this portfolio in September 2026. Repository documentation may change; follow the sources for the current implementation and evidence. This overview is not an independent reproduction of the experiments.</p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </article>
+    <section class="story-next" aria-labelledby="next-title"><div class="wrap">
+      <div class="story-next-top"><p class="eyebrow">ANOTHER QUESTION. ANOTHER PROJECT.</p><a href="../../#work">All projects</a></div>
+      <a class="story-next-link" href="../kbound/"><div><h2 id="next-title">K-Bound</h2><p>Knowing when not to update an AI model.</p></div><span class="story-next-arrow" aria-hidden="true">&nearr;</span></a>
+      <div class="story-contact"><p>Something here caught your interest?<br>I would like to hear what you are working on.</p><a href="mailto:pratik.niroula@mnsu.edu">pratik.niroula@mnsu.edu &nearr;</a></div>
+    </div></section>
+  </main>
+  <footer class="site-footer wrap mono"><span>&copy; <span id="year">2026</span> PRATIK NIROULA</span><span>THANKS FOR READING.</span><a href="https://github.com/Pratikn03/Website" target="_blank" rel="noopener noreferrer">SITE SOURCE &nearr;</a></footer>
+</body>
+</html>

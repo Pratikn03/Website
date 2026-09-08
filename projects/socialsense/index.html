@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>SocialSense-SLM | Pratik Niroula</title>
+  <meta name="description" content="Combining machine learning and document search while looking closely at privacy and explanations." />
+  <meta property="og:title" content="SocialSense-SLM | Pratik Niroula" />
+  <meta property="og:description" content="Build the model. Question the data. Explain the trade-offs." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://pratikn03.github.io/Website/projects/socialsense/" />
+  <link rel="canonical" href="https://pratikn03.github.io/Website/projects/socialsense/" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../portfolio.css" />
+  <link rel="stylesheet" href="../../case-study.css" />
+  <script src="../../case-study.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"SocialSense-SLM: Build the model. Question the data. Explain the trade-offs.","description":"Combining machine learning and document search while looking closely at privacy and explanations.","author":{"@type":"Person","name":"Pratik Niroula","url":"https://pratikn03.github.io/Website/"},"mainEntityOfPage":"https://pratikn03.github.io/Website/projects/socialsense/","inLanguage":"en","about":["LightGBM","ONNX","RAG"]}</script>
+</head>
+<body class="case-study">
+  <a class="skip-link" href="#main">Skip to project story</a>
+  <div class="page-progress" aria-hidden="true"></div>
+  <header class="site-header wrap">
+    <a class="wordmark" href="../../" aria-label="Pratik Niroula, home">pn<span class="brand-dot">.</span><span class="wordmark-caption">RESEARCH &amp; THINGS I BUILD</span></a>
+    <nav class="primary-nav" aria-label="Main navigation"><a href="../../#work" aria-current="page">Work</a><a href="../../#papers">Papers</a><a href="../../#vision">Vision</a></nav>
+    <button class="motion-toggle mono" id="motion-toggle" type="button" aria-pressed="true"><span class="motion-indicator" aria-hidden="true"></span><span id="motion-label">Motion on</span></button>
+  </header>
+  <main id="main">
+    <article aria-labelledby="story-title">
+      <div class="wrap">
+        <div class="story-breadcrumb"><a href="../../#work"><span aria-hidden="true">&larr;</span> Back to all projects</a><span class="mono">PROJECT 07 / 08</span></div>
+        <header class="story-hero">
+          <div class="story-hero-copy">
+            <p class="eyebrow">MULTIMODAL ML, PRIVACY, AND RETRIEVAL / SLM</p>
+            <h1 id="story-title">SocialSense</h1>
+            <p class="story-subtitle">Build the model. Question the data. Explain the trade-offs.</p>
+            <p class="story-deck">Combining machine learning and document search while looking closely at privacy and explanations.</p>
+            <div class="story-actions"><a class="button button-dark" href="#question">Read the story <span aria-hidden="true">&darr;</span></a><a class="text-link" href="https://github.com/Pratikn03/GropAI" target="_blank" rel="noopener noreferrer">Explore the code <span aria-hidden="true">&nearr;</span></a></div>
+          </div>
+          <figure class="story-map" aria-labelledby="map-title">
+            <p class="mono"><span>THE IDEA, AT A GLANCE</span><span>07</span></p>
+            <h2 class="story-map-title" id="map-title">Accuracy is only one part of the picture.</h2>
+            <ol><li><span class="story-step-number" aria-hidden="true">01</span><div><strong>Work with tables, images, and text</strong><p>Use different modeling and retrieval paths for different data.</p></div></li>
+<li><span class="story-step-number" aria-hidden="true">02</span><div><strong>Make the checks visible</strong><p>Inspect leakage, explanations, and privacy-utility choices.</p></div></li>
+<li><span class="story-step-number" aria-hidden="true">03</span><div><strong>Keep artifacts and context</strong><p>Version the inputs and report what a diagnostic actually means.</p></div></li></ol>
+            <figcaption>A conceptual overview, not a chart of experimental results.</figcaption>
+          </figure>
+        </header>
+        <dl class="story-facts">
+          <div><dt>Project status</dt><dd>Application and experimental workflows</dd></div>
+          <div><dt>Reading time</dt><dd>About 4 minutes &middot; By Pratik Niroula</dd></div>
+          <div><dt>Tools & themes</dt><dd><div class="project-tags"><span>LightGBM</span><span>ONNX</span><span>RAG</span></div></dd></div>
+        </dl>
+        <div class="story-layout">
+          <aside class="story-aside">
+            <p class="mono">IN THIS PROJECT</p>
+            <nav class="story-toc" aria-label="On this page"><a href="#question"><span aria-hidden="true">01</span>The question</a>
+<a href="#approach"><span aria-hidden="true">02</span>How it works</a>
+<a href="#inside"><span aria-hidden="true">03</span>Inside the project</a>
+<a href="#evidence"><span aria-hidden="true">04</span>Status &amp; limits</a>
+<a href="#takeaway"><span aria-hidden="true">05</span>The bigger idea</a>
+<a href="#resources"><span aria-hidden="true">06</span>Read the sources</a></nav>
+            <p class="story-aside-note">A closer look at the question, the work, and what it does and does not show.<br><br><a href="mailto:pratik.niroula@mnsu.edu?subject=SocialSense-SLM%20project%20question">Have a question?</a></p>
+          </aside>
+          <div class="story-body">
+            <section class="story-section" id="question">
+              <p class="eyebrow">01 / THE QUESTION</p><h2>What does a model&#39;s score leave out?</h2>
+              <div class="story-prose"><p>A useful machine-learning application needs more than a trained model. It also needs an account of where the data came from, how information was kept out of the evaluation set, what an explanation actually explains, and which privacy choices change the model&#39;s behavior.</p>
+<p>SocialSense-SLM combines those concerns in a multimodal AutoML and retrieval application. Its documented workflows cover tabular modeling, vision training and ONNX inference, document retrieval, explanation alignment, privacy-utility sweeps, and diagnostic governance reporting.</p>
+<p>The aim is to make those checks visible alongside the application rather than burying them in a training notebook. A privacy setting or risk score is more useful when someone can inspect the process behind it and understand what it does not establish.</p></div>
+              <aside class="story-callout"><span class="mono">IN PLAIN LANGUAGE</span><p>A privacy control, an explanation, and a risk score answer different questions. Putting them on one dashboard should not blur those differences.</p></aside>
+            </section>
+            <section class="story-section" id="approach">
+              <p class="eyebrow">02 / HOW IT WORKS</p><h2>Connect the workflows through reproducible artifacts.</h2>
+              <div class="story-prose"><p>The README describes a feature-store-first workflow with versioned snapshots, a dataset registry, and scripts that connect training to reports. Individual paths handle tabular models, image privacy experiments, and text retrieval rather than forcing every modality through the same method.</p></div>
+              <ol class="story-flow"><li><div><h3>Check and version the inputs</h3><p>Leakage guardrails look for duplicate, time, and path-related issues. A feature manifest and dataset configuration provide a record of which inputs a run is meant to use.</p></div></li>
+<li><div><h3>Train models with explanations in view</h3><p>The tabular path includes LightGBM and Optuna, optional AutoML baselines, and SHAP. Explanations are part of the workflow, but feature attribution should not be confused with a causal explanation.</p></div></li>
+<li><div><h3>Measure privacy and utility together</h3><p>The vision path includes training, ONNX export, inference, and consent-aware face blur. Blur sweeps explore how a transformation changes privacy-related behavior and task utility rather than assuming one setting is universally best.</p></div></li>
+<li><div><h3>Retrieve text and inspect explanation alignment</h3><p>SBERT retrieval is documented alongside a TF-IDF fallback and optional vector indexes. ExplainAlign compares top model features with retrieved passages through an alignment diagnostic.</p></div></li>
+<li><div><h3>Surface diagnostics and monitor changes</h3><p>The application exposes feature information, governance scoring, and other workflow views. Distribution checks such as PSI and KS support monitoring, with interpretation still dependent on the data and thresholds.</p></div></li></ol>
+            </section>
+            <section class="story-section" id="inside">
+              <p class="eyebrow">03 / INSIDE THE PROJECT</p><h2>Several forms of accountability in one codebase.</h2>
+              <div class="story-prose"><p>The project combines modeling code with scripts that make its assumptions and outputs easier to examine. The interesting connection is between the prediction path and the artifacts used to question it.</p></div>
+              <div class="story-components"><section class="story-component"><span class="mono">01 / PROJECT COMPONENT</span><h3>Tabular modeling and guardrails</h3><p>Leakage-aware pipelines, model search, baseline comparisons, and SHAP form the structured-data workflow.</p><code>backend/app/services/guardrails.py + scripts/tabular/</code></section>
+<section class="story-component"><span class="mono">02 / PROJECT COMPONENT</span><h3>Vision privacy experiments</h3><p>Training, ONNX conversion, blur sweeps, and privacy-policy search expose a concrete privacy-utility investigation.</p><code>scripts/vision/ + reports/privacy_utility/</code></section>
+<section class="story-component"><span class="mono">03 / PROJECT COMPONENT</span><h3>Retrieval and alignment</h3><p>Text embeddings, extractive retrieval, and ExplainAlign connect document context with explanation diagnostics.</p><code>scripts/rag/build_sbert.py + scripts/explain/align_metric.py</code></section>
+<section class="story-component"><span class="mono">04 / PROJECT COMPONENT</span><h3>Reproducibility and dashboard</h3><p>Versioned feature snapshots, dataset configuration, reports, and a React dashboard connect the research workflows to an application surface.</p><code>feature_store/manifest.json + configs/datasets/ + frontend/</code></section></div>
+            </section>
+            <section class="story-section" id="evidence">
+              <p class="eyebrow">04 / STATUS &amp; LIMITS</p><h2>Useful diagnostics are not blanket guarantees.</h2>
+              <div class="story-prose"><p>The repository identifies workflow scripts and expected reports, but it also lists unfinished work, including additional CI integration, figures, registry UI tests, and RAG performance analysis. Its demo instructions call for real datasets and model artifacts to be supplied before use.</p>
+<p>The governance score is an application diagnostic, not a legal or privacy certification. Face blur does not prove that an image is anonymous. Alignment between feature explanations and passages does not independently prove that a generated answer is correct or that hallucinations have been eliminated.</p></div>
+              <aside class="story-status"><span class="mono">WHAT TO KEEP IN MIND</span><h3>Inspectable workflows, with explicit work still to do.</h3><ul><li>The README&#39;s TODO list is part of the project status, not something this overview treats as completed.</li><li>Privacy-utility measurements depend on the transformation, dataset, threat model, and utility metric being studied.</li><li>Governance and alignment scores are diagnostics whose interpretation needs supporting evaluation.</li><li>A supplied dataset, model artifact, and environment are necessary to reproduce a meaningful demonstration.</li></ul></aside>
+            </section>
+            <section class="story-section" id="takeaway">
+              <p class="eyebrow">05 / THE BIGGER IDEA</p><h2>Make the trade-off something a person can inspect.</h2>
+              <div class="story-prose"><p>SocialSense is where several practical questions meet: can I trace the data, understand the prediction, see what a privacy choice changes, and recognize when the distribution has moved? None of those questions is answered by accuracy alone.</p>
+<p>What I want the application to encourage is inspection rather than blind trust in a dashboard number. The value is in connecting the controls and diagnostics to their underlying artifacts, while being honest about the evidence still needed.</p></div>
+              <div class="story-takeaway"><p>Trust becomes more useful when people can inspect the choices behind a prediction, not just the prediction itself.</p></div>
+            </section>
+            <section class="story-section" id="resources">
+              <p class="eyebrow">06 / KEEP EXPLORING</p><h2>Read the work behind the story.</h2>
+              <div class="story-prose"><p>This is the readable overview. The repository and research documents contain the details, assumptions, and setup instructions behind it.</p></div>
+              <div class="story-resources"><a class="story-resource" href="https://github.com/Pratikn03/GropAI" target="_blank" rel="noopener noreferrer"><div><strong>SocialSense-SLM overview</strong><p>The README explains the multimodal workflows, evidence paths, dependencies, and unfinished work.</p></div><span class="resource-arrow" aria-hidden="true">&nearr;</span></a>
+<a class="story-resource" href="https://github.com/Pratikn03/GropAI#governance--privacy" target="_blank" rel="noopener noreferrer"><div><strong>Privacy and governance workflow</strong><p>The documented blur sweeps, policy search, risk reporting, and explanation-alignment workflow.</p></div><span class="resource-arrow" aria-hidden="true">&nearr;</span></a>
+<a class="story-resource" href="https://github.com/Pratikn03/GropAI#monitoring--drift" target="_blank" rel="noopener noreferrer"><div><strong>Monitoring and drift</strong><p>The README&#39;s entrypoints for distribution checks and leakage auditing.</p></div><span class="resource-arrow" aria-hidden="true">&nearr;</span></a></div>
+              <p class="story-source-note">Written from the linked public project documentation for this portfolio in September 2026. Repository documentation may change; follow the sources for the current implementation and evidence. This overview is not an independent reproduction of the experiments.</p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </article>
+    <section class="story-next" aria-labelledby="next-title"><div class="wrap">
+      <div class="story-next-top"><p class="eyebrow">ANOTHER QUESTION. ANOTHER PROJECT.</p><a href="../../#work">All projects</a></div>
+      <a class="story-next-link" href="../tradeguard/"><div><h2 id="next-title">TradeGuard</h2><p>A control panel that takes the stop button seriously.</p></div><span class="story-next-arrow" aria-hidden="true">&nearr;</span></a>
+      <div class="story-contact"><p>Something here caught your interest?<br>I would like to hear what you are working on.</p><a href="mailto:pratik.niroula@mnsu.edu">pratik.niroula@mnsu.edu &nearr;</a></div>
+    </div></section>
+  </main>
+  <footer class="site-footer wrap mono"><span>&copy; <span id="year">2026</span> PRATIK NIROULA</span><span>THANKS FOR READING.</span><a href="https://github.com/Pratikn03/Website" target="_blank" rel="noopener noreferrer">SITE SOURCE &nearr;</a></footer>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>Sentifargo | Pratik Niroula</title>
+  <meta name="description" content="Bringing document search, risk analysis, and other AI tools into one application." />
+  <meta property="og:title" content="Sentifargo | Pratik Niroula" />
+  <meta property="og:description" content="One application. Several very different AI workflows." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://pratikn03.github.io/Website/projects/sentifargo/" />
+  <link rel="canonical" href="https://pratikn03.github.io/Website/projects/sentifargo/" />
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../portfolio.css" />
+  <link rel="stylesheet" href="../../case-study.css" />
+  <script src="../../case-study.js" defer></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Sentifargo: One application. Several very different AI workflows.","description":"Bringing document search, risk analysis, and other AI tools into one application.","author":{"@type":"Person","name":"Pratik Niroula","url":"https://pratikn03.github.io/Website/"},"mainEntityOfPage":"https://pratikn03.github.io/Website/projects/sentifargo/","inLanguage":"en","about":["Next.js","Kotlin / GraphQL","FastAPI"]}</script>
+</head>
+<body class="case-study">
+  <a class="skip-link" href="#main">Skip to project story</a>
+  <div class="page-progress" aria-hidden="true"></div>
+  <header class="site-header wrap">
+    <a class="wordmark" href="../../" aria-label="Pratik Niroula, home">pn<span class="brand-dot">.</span><span class="wordmark-caption">RESEARCH &amp; THINGS I BUILD</span></a>
+    <nav class="primary-nav" aria-label="Main navigation"><a href="../../#work" aria-current="page">Work</a><a href="../../#papers">Papers</a><a href="../../#vision">Vision</a></nav>
+    <button class="motion-toggle mono" id="motion-toggle" type="button" aria-pressed="true"><span class="motion-indicator" aria-hidden="true"></span><span id="motion-label">Motion on</span></button>
+  </header>
+  <main id="main">
+    <article aria-labelledby="story-title">
+      <div class="wrap">
+        <div class="story-breadcrumb"><a href="../../#work"><span aria-hidden="true">&larr;</span> Back to all projects</a><span class="mono">PROJECT 05 / 08</span></div>
+        <header class="story-hero">
+          <div class="story-hero-copy">
+            <p class="eyebrow">FULL-STACK AI PLATFORM</p>
+            <h1 id="story-title">Sentifargo</h1>
+            <p class="story-subtitle">One application. Several very different AI workflows.</p>
+            <p class="story-deck">Bringing document search, risk analysis, and other AI tools into one application.</p>
+            <div class="story-actions"><a class="button button-dark" href="#question">Read the story <span aria-hidden="true">&darr;</span></a><a class="text-link" href="https://github.com/Pratikn03/Cis380" target="_blank" rel="noopener noreferrer">Explore the code <span aria-hidden="true">&nearr;</span></a></div>
+          </div>
+          <figure class="story-map" aria-labelledby="map-title">
+            <p class="mono"><span>THE IDEA, AT A GLANCE</span><span>05</span></p>
+            <h2 class="story-map-title" id="map-title">Keep the interface coherent and the responsibilities separate.</h2>
+            <ol><li><span class="story-step-number" aria-hidden="true">01</span><div><strong>Next.js application</strong><p>The user-facing interface brings the workflows together.</p></div></li>
+<li><span class="story-step-number" aria-hidden="true">02</span><div><strong>Kotlin GraphQL gateway</strong><p>An explicit API contract sits between the UI and services.</p></div></li>
+<li><span class="story-step-number" aria-hidden="true">03</span><div><strong>Python ML and API services</strong><p>Domain models, retrieval, and media workflows live behind that boundary.</p></div></li></ol>
+            <figcaption>A conceptual overview, not a chart of experimental results.</figcaption>
+          </figure>
+        </header>
+        <dl class="story-facts">
+          <div><dt>Project status</dt><dd>Application code + architecture documentation</dd></div>
+          <div><dt>Reading time</dt><dd>About 4 minutes &middot; By Pratik Niroula</dd></div>
+          <div><dt>Tools & themes</dt><dd><div class="project-tags"><span>Next.js</span><span>Kotlin / GraphQL</span><span>FastAPI</span></div></dd></div>
+        </dl>
+        <div class="story-layout">
+          <aside class="story-aside">
+            <p class="mono">IN THIS PROJECT</p>
+            <nav class="story-toc" aria-label="On this page"><a href="#question"><span aria-hidden="true">01</span>The question</a>
+<a href="#approach"><span aria-hidden="true">02</span>How it works</a>
+<a href="#inside"><span aria-hidden="true">03</span>Inside the project</a>
+<a href="#evidence"><span aria-hidden="true">04</span>Status &amp; limits</a>
+<a href="#takeaway"><span aria-hidden="true">05</span>The bigger idea</a>
+<a href="#resources"><span aria-hidden="true">06</span>Read the sources</a></nav>
+            <p class="story-aside-note">A closer look at the question, the work, and what it does and does not show.<br><br><a href="mailto:pratik.niroula@mnsu.edu?subject=Sentifargo%20project%20question">Have a question?</a></p>
+          </aside>
+          <div class="story-body">
+            <section class="story-section" id="question">
+              <p class="eyebrow">01 / THE QUESTION</p><h2>How do several AI tools become one usable application?</h2>
+              <div class="story-prose"><p>A fraud model, a document-search tool, and a media-analysis workflow do not naturally behave like one product. They accept different inputs, depend on different artifacts, and produce outputs that mean different things. Putting them behind a single screen does not remove those differences.</p>
+<p>Sentifargo brings fraud, cyber, behavior, retrieval-augmented generation, and media workflows into a multimodal risk-intelligence application. The project is as much about the boundaries between components as it is about the models themselves.</p>
+<p>The current repository identifies a Next.js frontend, a Kotlin and Spring GraphQL gateway, and Python ML/API services as the canonical application stack. That gives the work a clear structure: a user interface, an application contract, and specialized services with their own responsibilities.</p></div>
+              <aside class="story-callout"><span class="mono">IN PLAIN LANGUAGE</span><p>A single interface is useful when it makes different tools easier to understand, not when it hides how different their answers are.</p></aside>
+            </section>
+            <section class="story-section" id="approach">
+              <p class="eyebrow">02 / HOW IT WORKS</p><h2>Three layers, with a deliberate contract between them.</h2>
+              <div class="story-prose"><p>The source documentation explicitly distinguishes the current stack from a legacy frontend. For this case study, the canonical mapping is more useful than treating every folder in a growing repository as an equally current part of the product.</p></div>
+              <ol class="story-flow"><li><div><h3>Start with the user-facing workflow</h3><p>The Next.js application is the canonical frontend. It is the presentation layer for a platform spanning document questions and domain-specific risk or media tasks.</p></div></li>
+<li><div><h3>Use a gateway rather than coupling every screen to every model</h3><p>The Kotlin gateway uses Spring GraphQL. Its schema provides an explicit integration surface between frontend requests and the Python runtime.</p></div></li>
+<li><div><h3>Keep specialized processing in the Python services</h3><p>The ML and API runtime is organized under app/ and src/. The project covers fraud, cyber, behavior, retrieval, and media workflows, rather than treating a general-purpose language model as the answer to every task.</p></div></li>
+<li><div><h3>Document the operational and model context</h3><p>The documentation index includes architecture, security, reproducibility, deployment, audits, and model cards. Those surfaces help a reader distinguish the application structure from a model&#39;s evaluation claims.</p></div></li></ol>
+            </section>
+            <section class="story-section" id="inside">
+              <p class="eyebrow">03 / INSIDE THE PROJECT</p><h2>More than a chat window.</h2>
+              <div class="story-prose"><p>The repository gives readers several useful starting points. The interface and gateway explain integration; the Python entrypoint explains the runtime; and the documentation maps the supporting data, model, and operational material.</p></div>
+              <div class="story-components"><section class="story-component"><span class="mono">01 / PROJECT COMPONENT</span><h3>Canonical frontend</h3><p>A Next.js application uses the GraphQL-facing stack. The older ui-web/frontend directory is retained for compatibility and reference, not presented as the current production frontend.</p><code>ui-web/next/</code></section>
+<section class="story-component"><span class="mono">02 / PROJECT COMPONENT</span><h3>GraphQL gateway</h3><p>A Kotlin and Spring application provides the gateway and schema. This makes the cross-language integration boundary explicit in the codebase.</p><code>services/gateway-kotlin/</code></section>
+<section class="story-component"><span class="mono">03 / PROJECT COMPONENT</span><h3>Python runtime</h3><p>FastAPI and the Python service code support the specialized AI workflows. Their behavior and model dependencies should be inspected separately from the visual interface.</p><code>app/main.py + app/ + src/</code></section>
+<section class="story-component"><span class="mono">04 / PROJECT COMPONENT</span><h3>Model and operating documentation</h3><p>The documentation index points to model cards, dataset and reproducibility material, security guidance, deployment plans, and audits.</p><code>docs/README.md + docs/CANONICAL.md</code></section></div>
+            </section>
+            <section class="story-section" id="evidence">
+              <p class="eyebrow">04 / STATUS &amp; LIMITS</p><h2>An integration does not validate every prediction.</h2>
+              <div class="story-prose"><p>The public README establishes the canonical architecture and the breadth of workflows. It does not, by itself, establish one accuracy, safety, or reliability result that applies to every module. Fraud classification, retrieval quality, and media analysis require different evaluations.</p>
+<p>This page therefore focuses on the documented engineering structure. The linked model cards and reproducibility documentation are the right next step for examining a specific model. Deployment workflows and infrastructure scaffolds should also be distinguished from evidence that a public service is currently operating.</p></div>
+              <aside class="story-status"><span class="mono">WHAT TO KEEP IN MIND</span><h3>A documented platform, with module-specific evidence to inspect.</h3><ul><li>The canonical application path is Next.js to Kotlin GraphQL to Python services; legacy UI folders are not presented as equivalent current surfaces.</li><li>No platform-wide accuracy, security guarantee, or production-usage figure is claimed on this page.</li><li>A retrieved passage can support an answer, but retrieval alone does not guarantee that the answer is correct.</li><li>This is an architecture overview, not a claim that every documented module has been independently rerun or audited here.</li></ul></aside>
+            </section>
+            <section class="story-section" id="takeaway">
+              <p class="eyebrow">05 / THE BIGGER IDEA</p><h2>The boundaries are part of the product.</h2>
+              <div class="story-prose"><p>What interests me about Sentifargo is the work between the models: how a request moves through an application, where a contract belongs, and how to keep the interface understandable when the underlying tasks are different.</p>
+<p>The project brings together frontend development, typed gateway design, Python services, and model documentation. A useful AI application needs all of those pieces to communicate clearly, including when a module cannot give a reliable answer.</p></div>
+              <div class="story-takeaway"><p>Making several AI tools feel like one application should not make their assumptions disappear.</p></div>
+            </section>
+            <section class="story-section" id="resources">
+              <p class="eyebrow">06 / KEEP EXPLORING</p><h2>Read the work behind the story.</h2>
+              <div class="story-prose"><p>This is the readable overview. The repository and research documents contain the details, assumptions, and setup instructions behind it.</p></div>
+              <div class="story-resources"><a class="story-resource" href="https://github.com/Pratikn03/Cis380" target="_blank" rel="noopener noreferrer"><div><strong>Sentifargo repository</strong><p>The current README establishes the canonical stack, scope, and local setup.</p></div><span class="resource-arrow" aria-hidden="true">&nearr;</span></a>
+<a class="story-resource" href="https://github.com/Pratikn03/Cis380/blob/main/docs/CANONICAL.md" target="_blank" rel="noopener noreferrer"><div><strong>Canonical source mapping</strong><p>Frontend, gateway, API entrypoints, schema, and the explicit legacy policy.</p></div><span class="resource-arrow" aria-hidden="true">&nearr;</span></a>
+<a class="story-resource" href="https://github.com/Pratikn03/Cis380/blob/main/docs/README.md" target="_blank" rel="noopener noreferrer"><div><strong>Documentation and model-card index</strong><p>Architecture, security, reproducibility, deployment, audits, and per-domain model cards.</p></div><span class="resource-arrow" aria-hidden="true">&nearr;</span></a></div>
+              <p class="story-source-note">Written from the linked public project documentation for this portfolio in September 2026. Repository documentation may change; follow the sources for the current implementation and evidence. This overview is not an independent reproduction of the experiments.</p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </article>
+    <section class="story-next" aria-labelledby="next-title"><div class="wrap">
+      <div class="story-next-top"><p class="eyebrow">ANOTHER QUESTION. ANOTHER PROJECT.</p><a href="../../#work">All projects</a></div>
+      <a class="story-next-link" href="../omnichatx/"><div><h2 id="next-title">OmniChatX</h2><p>Give the question to the tool that can actually answer it.</p></div><span class="story-next-arrow" aria-hidden="true">&nearr;</span></a>
+      <div class="story-contact"><p>Something here caught your interest?<br>I would like to hear what you are working on.</p><a href="mailto:pratik.niroula@mnsu.edu">pratik.niroula@mnsu.edu &nearr;</a></div>
+    </div></section>
+  </main>
+  <footer class="site-footer wrap mono"><span>&copy; <span id="year">2026</span> PRATIK NIROULA</span><span>THANKS FOR READING.</span><a href="https://github.com/Pratikn03/Website" target="_blank" rel="noopener noreferrer">SITE SOURCE &nearr;</a></footer>
+</body>
+</html>

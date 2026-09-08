@@ -91,9 +91,9 @@
     const card = el("article", "project-card reveal");
     card.dataset.category = project.category;
     card.style.setProperty("--reveal-delay", `${(index%2)*80}ms`);
-    const artButton = el("button", "project-art-button");
-    artButton.type = "button";
-    artButton.dataset.project = project.id;
+    const projectURL = `./projects/${project.id}/`;
+    const artButton = el("a", "project-art-button");
+    artButton.href = projectURL;
     artButton.setAttribute("aria-label", `Explore ${project.title}`);
     const art = el("div", "project-art");
     art.setAttribute("aria-hidden", "true");
@@ -108,9 +108,8 @@
     meta.append(el("span", "", project.type),el("span", "", `PROJECT ${String(index+1).padStart(2,"0")}`));
     const title = el("div", "project-title-row");
     const heading = el("h3");
-    const headingButton = el("button", "", project.title);
-    headingButton.type = "button";
-    headingButton.dataset.project = project.id;
+    const headingButton = el("a", "", project.title);
+    headingButton.href = projectURL;
     heading.append(headingButton);
     title.append(heading);
     if(project.repo) {
@@ -120,51 +119,12 @@
     }
     const tags = el("div", "project-tags");
     project.tags.forEach(tag=>tags.append(el("span", "", tag)));
-    const detail = el("button", "text-link project-detail-link", "What it’s about ↗");
-    detail.type = "button";
-    detail.dataset.project = project.id;
+    const detail = el("a", "text-link project-detail-link", "Read the full project story ↗");
+    detail.href = projectURL;
     detail.setAttribute("aria-label", `Read about ${project.title}`);
     card.append(artButton,meta,title,el("p", "project-description", project.summary),tags,detail);
     grid.append(card);
   });
-
-  const dialog = document.getElementById("project-dialog");
-  let dialogTrigger = null;
-  document.addEventListener("click", event => {
-    const trigger = event.target.closest("[data-project]");
-    if(!trigger) return;
-    const project = projects.find(item=>item.id===trigger.dataset.project);
-    if(!project) return;
-    dialogTrigger = trigger;
-    const content = document.getElementById("dialog-content");
-    content.replaceChildren();
-    const heading = el("h2", "detail-title", project.title);
-    heading.id = "detail-title";
-    content.append(el("p", "mono detail-category", project.label),heading,el("p", "detail-lead", project.summary));
-    [["The problem",project.question],["How it works",project.approach]].forEach(([title,text])=> {
-      const section = el("section", "detail-section");
-      section.append(el("h3", "", title),el("p", "", text));
-      content.append(section);
-    });
-    const section = el("section", "detail-section");
-    const list = el("ul");
-    project.deliverables.forEach(item=>list.append(el("li", "", item)));
-    section.append(el("h3", "", "What’s in the project"),list);
-    content.append(section,el("p", "detail-status", project.status));
-    const tags = el("div", "project-tags");
-    project.tags.forEach(tag=>tags.append(el("span", "", tag)));
-    const links = el("div", "detail-links");
-    if(project.repo) links.append(externalLink("Explore the code ↗",repositoryURL(project.repo),"button button-dark"));
-    if(project.paper) links.append(externalLink(`${project.paperLabel} ↗`,project.paper,project.repo?"text-link":"button button-dark"));
-    content.append(tags,links);
-    dialog.showModal();
-    dialog.scrollTop = 0;
-  });
-  dialog.addEventListener("click",event=> {
-    const rect = dialog.getBoundingClientRect();
-    if(event.target===dialog && (event.clientX<rect.left || event.clientX>rect.right || event.clientY<rect.top || event.clientY>rect.bottom)) dialog.close();
-  });
-  dialog.addEventListener("close",()=>dialogTrigger?.focus({preventScroll:true}));
 
   document.querySelectorAll("[data-filter]").forEach(button=>button.addEventListener("click",()=> {
     document.querySelectorAll("[data-filter]").forEach(item=> {
