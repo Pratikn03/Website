@@ -57,7 +57,7 @@ applications, outreach, documents, and local preview artifacts, stay untracked.
 
 ## Motion and accessibility
 
-The particle sculpture supports Boundary, Signal, and Trajectory. The Motion control pauses
+The decorative particle sketch supports Sphere, Wave, and Spiral. The Motion control pauses
 decorative motion and saves the preference locally. Device reduced-motion settings
 take priority. Canvas animation stops when the hero is outside the viewport or
 the tab is hidden. Project dialogs support keyboard focus, Escape, and close controls.
@@ -69,3 +69,11 @@ a two-color particle study. The opening research premise explains why
 indistinguishable observations can leave a decision unresolved. The final Vision
 section states an aspiration for AI that earns trust through evidence, evaluation,
 and honest uncertainty; it is not presented as an achieved guarantee.
+
+## Voice
+
+Use plain first-person language grounded in the author’s real work. Keep the
+research status and assumptions clear, explain technical ideas before naming them,
+and avoid invented personal anecdotes. The hero animation is explicitly labeled
+as a decorative sketch, while the separate two-world diagram explains the research
+question. The closing vision is a personal aspiration.

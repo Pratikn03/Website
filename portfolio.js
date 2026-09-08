@@ -105,7 +105,7 @@
     art.append(top,el("div", "art-bottomline mono", project.artLabel));
     artButton.append(art,el("span", "art-open", "↗"));
     const meta = el("div", "project-meta mono");
-    meta.append(el("span", "", project.type.toUpperCase()),el("span", "", `FIELD NOTE ${String(index+1).padStart(2,"0")}`));
+    meta.append(el("span", "", project.type),el("span", "", `PROJECT ${String(index+1).padStart(2,"0")}`));
     const title = el("div", "project-title-row");
     const heading = el("h3");
     const headingButton = el("button", "", project.title);
@@ -120,7 +120,7 @@
     }
     const tags = el("div", "project-tags");
     project.tags.forEach(tag=>tags.append(el("span", "", tag)));
-    const detail = el("button", "text-link project-detail-link", "The story behind it ↗");
+    const detail = el("button", "text-link project-detail-link", "What it’s about ↗");
     detail.type = "button";
     detail.dataset.project = project.id;
     detail.setAttribute("aria-label", `Read about ${project.title}`);
@@ -141,7 +141,7 @@
     const heading = el("h2", "detail-title", project.title);
     heading.id = "detail-title";
     content.append(el("p", "mono detail-category", project.label),heading,el("p", "detail-lead", project.summary));
-    [["The question",project.question],["The approach",project.approach]].forEach(([title,text])=> {
+    [["The problem",project.question],["How it works",project.approach]].forEach(([title,text])=> {
       const section = el("section", "detail-section");
       section.append(el("h3", "", title),el("p", "", text));
       content.append(section);
@@ -149,7 +149,7 @@
     const section = el("section", "detail-section");
     const list = el("ul");
     project.deliverables.forEach(item=>list.append(el("li", "", item)));
-    section.append(el("h3", "", "What I built & documented"),list);
+    section.append(el("h3", "", "What’s in the project"),list);
     content.append(section,el("p", "detail-status", project.status));
     const tags = el("div", "project-tags");
     project.tags.forEach(tag=>tags.append(el("span", "", tag)));
@@ -210,7 +210,7 @@
       if(valid.length) renderRepositories(valid.map(repo=>({...repo,description:curated.get(repo.name)?.description || repo.description,language:repo.language || curated.get(repo.name)?.language})));
       status.textContent = `${valid.length} public repositories · Updated from GitHub`;
     } catch {
-      status.textContent = "Showing the curated repository collection. More work is available on GitHub.";
+      status.textContent = "Here are the projects I’ve collected. You can find the latest on GitHub.";
       repositoriesRequested = false;
     } finally { clearTimeout(timeout); }
   });
