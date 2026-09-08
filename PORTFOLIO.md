@@ -1,6 +1,6 @@
 # Pratik Niroula's portfolio
 
-An editorial portfolio for research, papers, and software, published from the
+A bold red, white, and blue portfolio for research, papers, and software, published from the
 `main` branch through GitHub Pages.
 
 - Website: https://pratikn03.github.io/Website/
@@ -57,7 +57,15 @@ applications, outreach, documents, and local preview artifacts, stay untracked.
 
 ## Motion and accessibility
 
-The particle sculpture supports Orbit, Wave, and Flow. The Motion control pauses
+The particle sculpture supports Boundary, Signal, and Trajectory. The Motion control pauses
 decorative motion and saves the preference locally. Device reduced-motion settings
 take priority. Canvas animation stops when the hero is outside the viewport or
 the tab is hidden. Project dialogs support keyboard focus, Escape, and close controls.
+
+## Visual direction
+
+One red, white, and blue theme connects all project art, heavier typography, and
+a two-color particle study. The opening research premise explains why
+indistinguishable observations can leave a decision unresolved. The final Vision
+section states an aspiration for AI that earns trust through evidence, evaluation,
+and honest uncertainty; it is not presented as an achieved guarantee.

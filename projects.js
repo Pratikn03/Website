@@ -5,16 +5,16 @@ window.PORTFOLIO = {
   username: "Pratikn03",
   projects: [
     {
-      id: "kbound", title: "K-Bound", category: "research", label: "TRUSTWORTHY MACHINE LEARNING", type: "Research manuscript", repo: "K-Bound", art: "frontier", colors: ["#282e27", "#d4d9a5"], artLabel: "ADAPT / FREEZE / ABSTAIN", tags: ["PyTorch", "Test-time adaptation", "Lean 4"],
-      summary: "When should a model adapt, freeze, or abstain? Making uncertainty visible before a label-free update.",
+      id: "kbound", title: "K-Bound", category: "research", label: "TRUSTWORTHY MACHINE LEARNING", type: "Research manuscript", repo: "K-Bound", art: "frontier", colors: ["#0b1e4d", "#e8efff"], artLabel: "ADAPT / FREEZE / ABSTAIN", tags: ["PyTorch", "Test-time adaptation", "Lean 4"],
+      summary: "The impossibility question behind label-free adaptation: what can be known, and when must a decision remain unresolved?",
       question: "A model encounters shifted data, but the correct answers are unavailable. What evidence is enough to support changing its behavior, and when should it admit that it does not know?",
       approach: "K-Bound studies the sign of adaptation benefit across possibilities consistent with a stated uncertainty class. KGA is a separate empirical decision layer that uses a frozen benefit estimator and calibrated residual intervals to advise adapt, freeze, or abstain. It is designed to sit around candidate adapters such as Tent, EATA, and SAR.",
-      deliverables: ["A theoretical frontier separating supported and unresolved adaptation decisions.", "A Python decision layer, validation rules, and protocol-specific research runners.", "Research manuscripts, scoped Lean formalization, and reproducibility artifacts."],
+      deliverables: ["A theoretical frontier and impossibility results separating supported and unresolved adaptation decisions under a declared model class.", "A Python decision layer, validation rules, and protocol-specific research runners.", "Research manuscripts, scoped Lean formalization, and reproducibility artifacts."],
       status: "Research manuscript. Theoretical statements require their declared assumptions; empirical decisions require justified interval coverage. Neither implies universal gains under distribution shift.",
       paper: "https://github.com/Pratikn03/K-Bound/blob/main/docs/research/kbound/release/current/kbound_short_main.pdf", paperLabel: "Read main paper"
     },
     {
-      id: "orius", title: "ORIUS / GridPulse", category: "research", label: "PHYSICAL AI & RUNTIME SAFETY", type: "Research monograph", repo: "Capstone_Projects", art: "signal", colors: ["#dce2d3", "#405840"], artLabel: "OBSERVE / REPAIR / CERTIFY", tags: ["Python", "Uncertainty", "Runtime assurance"],
+      id: "orius", title: "ORIUS / GridPulse", category: "research", label: "PHYSICAL AI & RUNTIME SAFETY", type: "Research monograph", repo: "Capstone_Projects", art: "signal", colors: ["#d92d43", "#ffffff"], artLabel: "OBSERVE / REPAIR / CERTIFY", tags: ["Python", "Uncertainty", "Runtime assurance"],
       summary: "A safety layer for physical AI when noisy, delayed, or unreliable observations hide the true state.",
       question: "What if a controller believes an action is safe only because its sensors are wrong? ORIUS studies the gap between safety on an observed state and safety in the underlying physical system.",
       approach: "The runtime connects observation-quality signals to uncertainty, constraint tightening, action repair, and fallback. DomainAdapter defines domain-specific safety and repair semantics; CertOS records the lifecycle and release of auditable certificates.",
@@ -23,7 +23,7 @@ window.PORTFOLIO = {
       paper: "https://github.com/Pratikn03/Capstone_Projects/blob/main/paper/paper.pdf", paperLabel: "Read monograph"
     },
     {
-      id: "automl", title: "Leakage-Audited AutoML", category: "research", label: "EVALUATION & REPRODUCIBILITY", type: "Technical report", repo: "Auto_ML", art: "pipeline", colors: ["#e3cfb5", "#775039"], artLabel: "AUDIT / COMPARE / EXPLAIN", tags: ["scikit-learn", "SHAP", "AutoML"],
+      id: "automl", title: "Leakage-Audited AutoML", category: "research", label: "EVALUATION & REPRODUCIBILITY", type: "Technical report", repo: "Auto_ML", art: "pipeline", colors: ["#edf2ff", "#2350d8"], artLabel: "AUDIT / COMPARE / EXPLAIN", tags: ["scikit-learn", "SHAP", "AutoML"],
       summary: "Fair comparisons between AutoML and boosting, with leakage checks built into the experiment.",
       question: "Can a high benchmark score be trusted if data leaks across folds or competitors get different budgets? This work makes evaluation integrity part of the experiment itself.",
       approach: "Leakage audits check duplicates, groups, time, and label/path signals. Preprocessing stays within training folds. Shared splits, seeds, and budgets support comparisons across AutoML frameworks and boosting baselines, alongside feature ablations and statistical reporting.",
@@ -32,7 +32,7 @@ window.PORTFOLIO = {
       paper: "https://github.com/Pratikn03/Auto_ML/blob/main/docs/AutoML.pdf", paperLabel: "Read report"
     },
     {
-      id: "elara", title: "ELARA", category: "research", label: "MULTIMODAL RELIABILITY", type: "Research draft", repo: null, art: "fusion", colors: ["#d9dce3", "#464e69"], artLabel: "SIGNALS / RELIABILITY / FUSION", tags: ["Multimodal ML", "Anomaly detection", "Drift"],
+      id: "elara", title: "ELARA", category: "research", label: "MULTIMODAL RELIABILITY", type: "Research draft", repo: null, art: "fusion", colors: ["#2350d8", "#ffffff"], artLabel: "SIGNALS / RELIABILITY / FUSION", tags: ["Multimodal ML", "Anomaly detection", "Drift"],
       summary: "Exploring how to combine multiple signals when their reliability changes with the data.",
       question: "When different modalities become unreliable in different ways, how should an anomaly-detection system decide which signals to trust?",
       approach: "ELARA explores reliability-gated multimodal anomaly fusion under distribution drift. Its central idea is to use reliability signals to guide how modalities are combined instead of giving every input the same authority.",
@@ -41,7 +41,7 @@ window.PORTFOLIO = {
       paper: "mailto:pratik.niroula@mnsu.edu?subject=ELARA%20manuscript%20request", paperLabel: "Request manuscript"
     },
     {
-      id: "sentifargo", title: "Sentifargo", category: "ai", label: "MULTIMODAL AI ENGINEERING", type: "Application project", repo: "Cis380", art: "network", colors: ["#2c373b", "#b5d2cb"], artLabel: "RETRIEVE / ROUTE / REASON", tags: ["Next.js", "Kotlin / GraphQL", "FastAPI"],
+      id: "sentifargo", title: "Sentifargo", category: "ai", label: "MULTIMODAL AI ENGINEERING", type: "Application project", repo: "Cis380", art: "network", colors: ["#10275d", "#a8c2ff"], artLabel: "RETRIEVE / ROUTE / REASON", tags: ["Next.js", "Kotlin / GraphQL", "FastAPI"],
       summary: "An integrated platform for fraud, cyber, behavior, document retrieval, and media workflows.",
       question: "How can many specialized AI capabilities become one coherent application, with a clear connection between the interface, service contracts, and underlying models?",
       approach: "A Next.js interface communicates through a Kotlin/Spring GraphQL gateway to Python ML services. The project brings together risk and anomaly workflows, multimodal processing, and document question answering. Hybrid retrieval combines dense embeddings with BM25 before merging and reranking context.",
@@ -49,7 +49,7 @@ window.PORTFOLIO = {
       status: "Engineering project. The canonical frontend is Next.js and the gateway is Kotlin/Spring GraphQL; earlier UI implementations remain in the repository as legacy surfaces."
     },
     {
-      id: "omnichatx", title: "OmniChatX", category: "ai", label: "AGENTS & RETRIEVAL", type: "Application project", repo: "Recommnder_System", art: "routing", colors: ["#e3d9ce", "#6c5245"], artLabel: "ONE INTERFACE / MANY TOOLS", tags: ["RAG", "Agent routing", "Streamlit"],
+      id: "omnichatx", title: "OmniChatX", category: "ai", label: "AGENTS & RETRIEVAL", type: "Application project", repo: "Recommnder_System", art: "routing", colors: ["#ffedf0", "#c9243d"], artLabel: "ONE INTERFACE / MANY TOOLS", tags: ["RAG", "Agent routing", "Streamlit"],
       summary: "A multi-domain assistant that routes questions to retrieval, specialized models, and LLM tools.",
       question: "Can one conversational interface select the right tool for document questions, recommendations, and domain-specific anomaly queries?",
       approach: "An orchestrator routes requests between LLM reasoning, a document retrieval pipeline, and specialized fraud, cyber, behavior, and recommendation modules. FastAPI exposes the capabilities, while a Streamlit interface provides the conversational surface.",
@@ -57,7 +57,7 @@ window.PORTFOLIO = {
       status: "Application and learning project. The repository documents the integrated architecture and optional extensions; this page does not claim a live hosted service."
     },
     {
-      id: "socialsense", title: "SocialSense-SLM", category: "ai", label: "PRIVACY & EXPLAINABLE AI", type: "Application project", repo: "GropAI", art: "privacy", colors: ["#d9dfca", "#4c5a36"], artLabel: "PRIVACY / UTILITY / CONTEXT", tags: ["LightGBM", "ONNX", "RAG"],
+      id: "socialsense", title: "SocialSense-SLM", category: "ai", label: "PRIVACY & EXPLAINABLE AI", type: "Application project", repo: "GropAI", art: "privacy", colors: ["#eaf0ff", "#1d43b6"], artLabel: "PRIVACY / UTILITY / CONTEXT", tags: ["LightGBM", "ONNX", "RAG"],
       summary: "Multimodal AutoML and retrieval with leakage guardrails, explainability, and privacy-utility studies.",
       question: "How can an ML application make data leakage, privacy trade-offs, and the relationship between explanations and retrieved evidence visible?",
       approach: "The project combines tabular AutoML, vision inference, and SBERT-based retrieval. It includes leakage audits, SHAP explanations, consent-aware image blurring, and privacy-utility sweeps. Versioned feature snapshots and run configurations support reproducibility.",
@@ -65,7 +65,7 @@ window.PORTFOLIO = {
       status: "Engineering and experimentation project. Privacy and governance features are described as implemented mechanisms, not as a blanket certification."
     },
     {
-      id: "tradeguard", title: "TradeGuard", category: "software", label: "CONTROL SYSTEMS & SOFTWARE", type: "Engineering project", repo: "Trading", art: "control", colors: ["#d7e1e0", "#385e62"], artLabel: "RECONCILE / VERIFY / CONTROL", tags: ["React / TypeScript", "PostgreSQL", "FastAPI"],
+      id: "tradeguard", title: "TradeGuard", category: "software", label: "CONTROL SYSTEMS & SOFTWARE", type: "Engineering project", repo: "Trading", art: "control", colors: ["#d92d43", "#ffffff"], artLabel: "RECONCILE / VERIFY / CONTROL", tags: ["React / TypeScript", "PostgreSQL", "FastAPI"],
       summary: "A paper-first trading control application with a separate worker, audit trail, and durable stop controls.",
       question: "How can a single-operator trading application separate the dashboard from execution while keeping decisions, commands, and risk controls auditable?",
       approach: "A FastAPI backend handles access and control commands. A separate worker owns reconciliation, strategy evaluation, verifier checks, and the persistent kill switch. PostgreSQL stores state and audit records; a React/TypeScript interface presents the control surface.",

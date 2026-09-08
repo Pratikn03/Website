@@ -229,7 +229,7 @@
         if(link.hash===`#${entry.target.id}`) link.setAttribute("aria-current","location"); else link.removeAttribute("aria-current");
       });
     }),{rootMargin:"-15% 0px -60% 0px"});
-    ["work","papers","about"].forEach(id=>navObserver.observe(document.getElementById(id)));
+    ["work","papers","vision"].forEach(id=>navObserver.observe(document.getElementById(id)));
   }
   let scrollQueued = false;
   const progress = document.querySelector(".page-progress");
@@ -268,7 +268,8 @@
         return [Math.cos(t+phase*.16)*r,y*1.15,Math.sin(t+phase*.16)*r];
       }
       const ripple=1+.075*Math.sin(angle*3+y*4+phase);
-      return [Math.cos(angle)*radius*ripple,y*ripple,Math.sin(angle)*radius*ripple];
+      const x = Math.cos(angle)*radius*ripple;
+      return [x + Math.sign(x)*.1,y*ripple,Math.sin(angle)*radius*ripple];
     }
     function draw() {
       context.clearRect(0,0,width,height);
@@ -283,11 +284,11 @@
         const x=point.x*cy+point.z*sy,z1=-point.x*sy+point.z*cy;
         const y=point.y*cx-z1*sx,z=point.y*sx+z1*cx;
         const perspective=3.8/(3.8-z);
-        return {x:width/2+x*scale*perspective,y:height*.49+y*scale*perspective,z,size:(.8+(z+1.3)*.34)*perspective,index:point.i};
+        return {x:width/2+x*scale*perspective,y:height*.49+y*scale*perspective,z,size:(.8+(z+1.3)*.34)*perspective,index:point.i,tone:point.x < 0 ? "blue" : "red"};
       }).sort((a,b)=>a.z-b.z);
       projected.forEach(point=> {
         const alpha=Math.min(.96,Math.max(.18,(point.z+1.5)/2.6));
-        context.fillStyle=point.index%11===0?`rgba(75,78,51,${alpha*.7})`:`rgba(169,67,36,${alpha})`;
+        context.fillStyle=point.tone === "blue" ? `rgba(35,80,216,${alpha})` : `rgba(217,45,67,${alpha})`;
         context.beginPath();context.arc(point.x,point.y,Math.max(.6,point.size),0,Math.PI*2);context.fill();
       });
     }
